@@ -17,6 +17,9 @@
         android:theme="@style/Theme.QuickDoc"
         tools:targetApi="31">
         <activity
+            android:name=".Doctor_Activity"
+            android:exported="false" />
+        <activity
             android:name=".SettingActivity"
             android:exported="false" />
         <activity
@@ -25,7 +28,7 @@
         <activity
             android:name=".HomeActivity"
             android:exported="false"
-            android:theme="@style/showActionBar"/>
+            android:theme="@style/showActionBar" />
         <activity
             android:name=".Email_Activity"
             android:exported="false" />
@@ -41,30 +44,29 @@
         <activity
             android:name=".LoginActivity"
             android:exported="false"
-            android:windowSoftInputMode="adjustResize"/>
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".OTP_Activity"
             android:exported="false"
-            android:windowSoftInputMode="adjustResize"/>
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".Register_Activity"
             android:exported="false"
-            android:windowSoftInputMode="adjustResize"/>
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".Main_Activity"
             android:exported="false"
-            android:windowSoftInputMode="adjustResize"/>
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".Splash_Activity"
             android:exported="true"
             android:windowSoftInputMode="adjustResize">
-    <intent-filter>
-        <action android:name="android.intent.action.MAIN" />
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-        <category android:name="android.intent.category.LAUNCHER" />
-    </intent-filter>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
-
 
         <meta-data
             android:name="preloaded_fonts"
