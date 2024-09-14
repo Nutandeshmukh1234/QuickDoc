@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+<item
+    android:title="About Us"
+    android:id="@+id/menuAboutus"
+    app:showAsAction="never"
+    />
+    <item
+        android:id="@+id/menuSetting"
+        android:title="Setting"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/menulogout"
+        android:title="Logout"
+        app:showAsAction="always"
+        android:icon="@drawable/baseline_logout_24"/>
+
+</menu>

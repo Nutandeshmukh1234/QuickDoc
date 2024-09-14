@@ -1,0 +1,80 @@
+package com.example.quickdoc;
+
+import android.app.ProgressDialog;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.Toast;
+
+import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
+
+import com.google.firebase.FirebaseException;
+import com.google.firebase.auth.PhoneAuthCredential;
+import com.google.firebase.auth.PhoneAuthProvider;
+
+import java.util.concurrent.TimeUnit;
+
+public class ConformMobilenoActivity extends AppCompatActivity {
+
+    EditText editText;
+    AppCompatButton button;
+    ProgressDialog progressDialog;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_conform_mobileno);
+
+
+        editText=findViewById(R.id.etmodilenoConform);
+        button=findViewById(R.id.btnVerify);
+
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (editText.getText().toString().isEmpty()){
+                    editText.setError("Please Enter Mobile Number");
+                } else if (editText.getText().toString().length()!=10) {
+                    editText.setError("Please Enter Valid Mobile Number");
+                } else {
+                    progressDialog = new ProgressDialog(ConformMobilenoActivity.this);
+                    progressDialog.setTitle("");
+                    progressDialog.setMessage("Please Wait....");
+                    progressDialog.setCanceledOnTouchOutside(false);
+                    progressDialog.show();
+
+                    PhoneAuthProvider.getInstance().verifyPhoneNumber("+91"+editText.getText().toString(), 60, TimeUnit.SECONDS
+                            , ConformMobilenoActivity.this, new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
+                                @Override
+                                public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
+                                    progressDialog.dismiss();
+                                    Toast.makeText(ConformMobilenoActivity.this,"Verification Completed",Toast.LENGTH_SHORT).show();
+                                }
+
+                                @Override
+                                public void onVerificationFailed(@NonNull FirebaseException e) {
+                                    progressDialog.dismiss();
+                                    Toast.makeText(ConformMobilenoActivity.this,"OTP Failed",Toast.LENGTH_SHORT).show();
+                                }
+
+                                @Override
+                                public void onCodeSent(@NonNull String verifcationcode, @NonNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
+                                    Intent i = new Intent(ConformMobilenoActivity.this, ForgetPasswordOTPVerification.class);
+                                    i.putExtra("modileno",editText.getText().toString());
+                                    i.putExtra("verifcationcode",verifcationcode);
+                                    startActivity(i);
+                                }
+                            });
+
+                }
+            }
+        });
+
+    }
+}

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "566259804911",
+    "project_id": "quickdoc-1c412",
+    "storage_bucket": "quickdoc-1c412.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:566259804911:android:759c1a3d70d2fe9594091a",
+        "android_client_info": {
+          "package_name": "com.example.quickdoc"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAGffSgMaN4WfqKfq4DvwjFMfylFohlrhk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
