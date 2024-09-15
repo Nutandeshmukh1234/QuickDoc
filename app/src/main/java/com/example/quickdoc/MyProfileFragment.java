@@ -105,13 +105,11 @@ public class MyProfileFragment extends Fragment {
                         textView4.setText(username);
 
                         Glide.with(getActivity())
-                                .load("http://192.168.29.70:80/QuickDoc/images/"+image)
+                                .load("http://192.168.199.113:80/QuickDoc/images/"+image)
                                 .skipMemoryCache(true)
                                 .diskCacheStrategy(DiskCacheStrategy.NONE)
                                 .error(R.drawable.imagenotfound)
                                 .into(imageView);
-
-
 
                     }
 

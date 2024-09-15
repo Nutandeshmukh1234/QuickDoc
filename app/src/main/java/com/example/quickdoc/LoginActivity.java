@@ -6,10 +6,13 @@ import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
+import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -51,6 +54,7 @@ public class LoginActivity extends AppCompatActivity {
     ProgressDialog progressDialog;
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
+    Animation fadein;
 
 
     @Override
@@ -65,6 +69,16 @@ public class LoginActivity extends AppCompatActivity {
         tvLoginSign = findViewById(R.id.tvNewUser);
         tvForget=findViewById(R.id.tvForgotText);
         tvContactWedSiteText=findViewById(R.id.tvContactWedSiteText);
+
+        fadein = AnimationUtils.loadAnimation(LoginActivity.this,R.anim.fadein);
+        etusername.setAnimation(fadein);
+        etPassword.setAnimation(fadein);
+        cbLogin.setAnimation(fadein);
+        btnLogin.setAnimation(fadein);
+        tvLoginSign.setAnimation(fadein);
+        tvForget.setAnimation(fadein);
+        tvContactWedSiteText.setAnimation(fadein);
+
 
         sharedPreferences= PreferenceManager.getDefaultSharedPreferences(LoginActivity.this);
         editor = sharedPreferences.edit();

@@ -9,8 +9,8 @@
     android:orientation="vertical">
 
     <ImageView
-        android:layout_width="300dp"
-        android:layout_height="170dp"
+        android:layout_width="250dp"
+        android:layout_height="200dp"
         android:id="@+id/ivCabBazarLogo"
         android:layout_gravity="center"
         android:src="@drawable/quickdoc1_removebg"/>
@@ -24,7 +24,7 @@
         android:textColor="@color/black"
         android:hint=" Mobile Number"
         android:inputType="number"
-        android:textColorHint="@color/light_blue"
+        android:textColorHint="@color/black"
         android:drawableLeft="@drawable/icon_phone"
         android:textSize="18sp"
         android:background="@drawable/login_design"
