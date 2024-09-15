@@ -7,6 +7,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.core.graphics.Insets;
@@ -17,6 +18,8 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 
 public class Email_Activity extends AppCompatActivity
 {
@@ -39,19 +42,28 @@ public class Email_Activity extends AppCompatActivity
 
         GoogleSignInAccount googleSignInAccount= GoogleSignIn.getLastSignedInAccount(Email_Activity.this);
 
-        if (googleSignInAccount!=null){
+        if (googleSignInAccount!=null)
+        {
             String name =googleSignInAccount.getDisplayName();
             String emailid =googleSignInAccount.getEmail();
+
             tvname.setText(name);
             tvemail.setText(emailid);
+
             Toast.makeText(this, "", Toast.LENGTH_SHORT).show();
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                googleSignInClient.signOut();
-                Intent i = new Intent(Email_Activity.this,LoginActivity.class);
-                startActivity(i);
+                googleSignInClient.signOut().addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        Intent i = new Intent(Email_Activity.this,LoginActivity.class);
+                        startActivity(i);
+                        finish();
+                    }
+                });
+
             }
         });
         }

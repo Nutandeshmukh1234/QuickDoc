@@ -13,7 +13,7 @@
         android:layout_height="170dp"
         android:id="@+id/ivCabBazarLogo"
         android:layout_gravity="center"
-        android:src="@drawable/doctorimage1"/>
+        android:src="@drawable/quickdoc1_removebg"/>
 
     <EditText
         android:layout_width="350dp"

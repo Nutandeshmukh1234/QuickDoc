@@ -16,6 +16,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
@@ -30,7 +32,7 @@ import cz.msebera.android.httpclient.Header;
 public class MyProfileFragment extends Fragment {
 
     ImageView imageView;
-    AppCompatButton button;
+    AppCompatButton button1,button2;
     TextView textView1,textView2, textView3,textView4;
     ProgressDialog progressDialog;
     SharedPreferences sharedPreferences;
@@ -44,15 +46,18 @@ public class MyProfileFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_my_profile, container, false);
 
+        sharedPreferences= PreferenceManager.getDefaultSharedPreferences(getActivity());
+        strUsername = sharedPreferences.getString("username","");
+
+
         imageView = view.findViewById(R.id.ivQuickDocLogo);
-        button= view.findViewById(R.id.btnChangeProfile);
+        button1= view.findViewById(R.id.btnChangeProfile);
+        button2= view.findViewById(R.id.btnSignOut);
         textView1=view.findViewById(R.id.tvNameUser);
         textView2=view.findViewById(R.id.tvMobilenoUser);
         textView3=view.findViewById(R.id.tvEmailidUser);
         textView4=view.findViewById(R.id.tvUsernameUser);
 
-        sharedPreferences= PreferenceManager.getDefaultSharedPreferences(getActivity());
-        strUsername=sharedPreferences.getString("username","");
 
        return view;
     }
@@ -75,17 +80,20 @@ public class MyProfileFragment extends Fragment {
 
         params.put("username",strUsername);
 
-
         asyncHttpClient.post("http://192.168.199.113:80/QuickDoc/quickdocMyDetails.php",params,new JsonHttpResponseHandler(){
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 super.onSuccess(statusCode, headers, response);
+
                 try {
                     JSONArray jsonArray = response.getJSONArray("getMyDetails");
-                    for (int i=0; i<jsonArray.length();i++) {
+
+                    for (int i=0; i<jsonArray.length(); i++) {
                         progressDialog.dismiss();
                         JSONObject jsonObject = jsonArray.getJSONObject(i);
+
                         String id = jsonObject.getString("id");
+                        String image = jsonObject.getString("image");
                         String name = jsonObject.getString("name");
                         String modileno = jsonObject.getString("modileno");
                         String emailid = jsonObject.getString("emailid");
@@ -95,6 +103,14 @@ public class MyProfileFragment extends Fragment {
                         textView2.setText(modileno);
                         textView3.setText(emailid);
                         textView4.setText(username);
+
+                        Glide.with(getActivity())
+                                .load("http://192.168.29.70:80/QuickDoc/images/"+image)
+                                .skipMemoryCache(true)
+                                .diskCacheStrategy(DiskCacheStrategy.NONE)
+                                .error(R.drawable.imagenotfound)
+                                .into(imageView);
+
 
 
                     }

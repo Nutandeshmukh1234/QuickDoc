@@ -4,14 +4,14 @@
     <item
         android:id="@+id/itemHome"
         android:title="Home"
-        />
-
+        android:icon="@drawable/icon_home"/>
     <item
         android:id="@+id/itemDoctor"
         android:title="Doctor"/>
     <item
         android:id="@+id/itemMyProfile"
         android:title="My Profile"
+        android:icon="@drawable/icon_portrait"
         />
 
 

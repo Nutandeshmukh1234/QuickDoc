@@ -83,8 +83,8 @@ public class LoginActivity extends AppCompatActivity {
                 signIn();
             }
 
-
         });
+
         tvForget.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -174,6 +174,7 @@ public class LoginActivity extends AppCompatActivity {
                         progressDialog.dismiss();
                         Toast.makeText(LoginActivity.this,"Login Successful",Toast.LENGTH_SHORT).show();
                         Intent i = new Intent(LoginActivity.this,HomeActivity.class);
+                        editor.putString("username",etusername.getText().toString());
                         startActivity(i);
                         finish();
 

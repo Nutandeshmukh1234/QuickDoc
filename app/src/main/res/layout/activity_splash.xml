@@ -13,13 +13,8 @@
         android:layout_width="match_parent"
         android:layout_height="280dp"
         android:id="@+id/ivDoctorLogo"
-        android:src="@drawable/doctorimage1"/>
-
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="280dp"
-        android:id="@+id/ivDoctorLogo1"
-        android:src="@drawable/doctorimage1"/>
+        android:src="@drawable/quickdoc1_removebg"/>
+    
 
 
 </LinearLayout>
