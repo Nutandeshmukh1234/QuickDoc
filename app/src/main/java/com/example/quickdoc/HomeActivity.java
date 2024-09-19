@@ -74,6 +74,7 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
         } else if (item.getItemId()==R.id.menulogout) {
             logout();
 
+
         }
         return true;
     }
@@ -93,7 +94,7 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 Intent i = new Intent(HomeActivity.this, LoginActivity.class);
-                editor.putBoolean("isLogin",true).commit();
+                editor.putBoolean("isLogin",false).commit();
                 startActivity(i);
             }
         }).create().show();

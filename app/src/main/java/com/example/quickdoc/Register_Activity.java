@@ -135,7 +135,7 @@ public class Register_Activity extends AppCompatActivity {
                 params.put("username",etusername.getText().toString());
                 params.put("password",etPassword.getText().toString());
 
-                client.post("http://192.168.199.113:80/QuickDoc/quickdocuserRegister.php",params,new JsonHttpResponseHandler(){
+                client.post("http://192.168.249.113:80/QuickDoc/quickdocuserRegister.php",params,new JsonHttpResponseHandler(){
                     @Override
                     public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                         super.onSuccess(statusCode, headers, response); try {
@@ -149,8 +149,8 @@ public class Register_Activity extends AppCompatActivity {
                                 finish();
 
                             }else {
-                                Toast.makeText(Register_Activity.this,"Already data Exists",Toast.LENGTH_SHORT).show();
                                 progressDialog.dismiss();
+                                Toast.makeText(Register_Activity.this,"Already data Exists",Toast.LENGTH_SHORT).show();
                             }
                         } catch (JSONException e) {
                             throw new RuntimeException(e);
