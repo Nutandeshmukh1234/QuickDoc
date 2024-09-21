@@ -15,11 +15,6 @@
         android:id="@+id/ivDoctorLogo"
         android:src="@drawable/quickdoc1_removebg"/>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/sample1"
-        android:text="Hello SAmple"/>
     
 
 

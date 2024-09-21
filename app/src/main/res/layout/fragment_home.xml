@@ -3,8 +3,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context=".HomeFragment">
+
+    <androidx.appcompat.widget.SearchView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/svHomeFragmentSearchCategaory"
+        app:queryHint="Search By Category"
+        app:iconifiedByDefault="false"
+        android:padding="9dp"
+        android:layout_margin="17dp"
+        android:background="@drawable/login_design"/>
 
     <ListView
         android:layout_width="match_parent"

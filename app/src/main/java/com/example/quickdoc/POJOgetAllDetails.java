@@ -8,7 +8,6 @@ public class POJOgetAllDetails {
         this.id = id;
         this.categoryimage = categoryimage;
         this.categoryname = categoryname;
-
     }
 
     public String getId() {

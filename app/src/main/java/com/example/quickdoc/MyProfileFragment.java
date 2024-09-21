@@ -80,7 +80,7 @@ public class MyProfileFragment extends Fragment {
 
         params.put("username",strUsername);
 
-        asyncHttpClient.post("http://192.168.249.113:80/QuickDoc/quickdocMyDetails.php",params,new JsonHttpResponseHandler(){
+        asyncHttpClient.post("http://192.168.199.113:80/QuickDoc/quickdocMyDetails.php/",params,new JsonHttpResponseHandler(){
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 super.onSuccess(statusCode, headers, response);
@@ -105,10 +105,11 @@ public class MyProfileFragment extends Fragment {
                         textView4.setText(username);
 
                         Glide.with(getActivity())
-                                .load("http://192.168.249.113:80/QuickDoc/images/"+image)
+                                .load("http://192.168.199.113:80/QuickDoc/images/"+image)
                                 .skipMemoryCache(true)
                                 .diskCacheStrategy(DiskCacheStrategy.NONE)
                                 .error(R.drawable.imagenotfound)
+                                .placeholder(R.drawable.icon_home)
                                 .into(imageView);
 
                     }

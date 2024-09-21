@@ -2,6 +2,7 @@ package com.example.quickdoc;
 
 import android.os.Bundle;
 
+import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -32,6 +33,7 @@ public class HomeFragment extends Fragment {
     TextView textView;
     List<POJOgetAllDetails> pojOgetAllDetails;
     AdaptergetAllDetails adaptergetAllDetails;
+    SearchView searchView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -41,6 +43,21 @@ public class HomeFragment extends Fragment {
 
         listView = view.findViewById(R.id.lvListHomeFragment);
         textView=view.findViewById(R.id.tvNotFoundHoneFragment);
+        searchView= view.findViewById(R.id.svHomeFragmentSearchCategaory);
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                searchView(query);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String query) {
+                searchView(query);
+                return false;
+            }
+        });
 
         pojOgetAllDetails = new ArrayList();
 
@@ -50,11 +67,16 @@ public class HomeFragment extends Fragment {
         return view;
     }
 
+    private void searchView(String query) {
+        List<POJOgetAllDetails> pojOgetAllDetails1 = new ArrayList<>();
+
+    }
+
     private void getAllCategariesDetails() {
         AsyncHttpClient client = new AsyncHttpClient();
         RequestParams params = new RequestParams();
 
-                client.post("http://192.168.249.113:80/QuickDoc/quickdocgetAllCategoryDetails.php",params,new JsonHttpResponseHandler(){
+                client.post("http://192.168.199.113:80/QuickDoc/quickdocgetAllCategoryDetails.php",params,new JsonHttpResponseHandler(){
                     @Override
                     public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                         super.onSuccess(statusCode, headers, response);
@@ -69,9 +91,12 @@ public class HomeFragment extends Fragment {
                                 String id = jsonObject.getString("id");
                                 String categoryimage = jsonObject.getString("categoryimage");
                                 String categoryname = jsonObject.getString("categoryname");
-                                
 
+                                pojOgetAllDetails.add(new POJOgetAllDetails(id,categoryimage,categoryname));
                             }
+
+                            adaptergetAllDetails = new AdaptergetAllDetails(pojOgetAllDetails,getActivity());
+                            listView.setAdapter(adaptergetAllDetails);
 
                         } catch (JSONException e) {
                             throw new RuntimeException(e);
