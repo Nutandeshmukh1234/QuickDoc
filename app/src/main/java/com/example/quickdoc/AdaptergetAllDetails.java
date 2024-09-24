@@ -57,7 +57,6 @@ public class AdaptergetAllDetails extends BaseAdapter {
                 .load("http://192.168.199.113:80/QuickDoc/images/"+obj.getCategoryimage())
                 .skipMemoryCache(true)
                 .diskCacheStrategy(DiskCacheStrategy.NONE)
-                .error(R.drawable.imagenotfound)
                 .placeholder(R.drawable.icon_home)
                 .into(viewHolder.ivCategaryimage);
         return view;

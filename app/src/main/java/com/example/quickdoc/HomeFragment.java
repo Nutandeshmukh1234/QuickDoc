@@ -68,7 +68,21 @@ public class HomeFragment extends Fragment {
     }
 
     private void searchView(String query) {
-        List<POJOgetAllDetails> pojOgetAllDetails1 = new ArrayList<>();
+        List<POJOgetAllDetails> tempcategory = new ArrayList<>();
+        tempcategory.clear();
+        for (POJOgetAllDetails obj : pojOgetAllDetails)
+        {
+            if (obj.getCategoryname().toUpperCase().contains(query.toUpperCase()))
+            {
+                tempcategory.add(obj);
+            } else {
+                textView.setVisibility(View.VISIBLE);
+            }
+            adaptergetAllDetails = new AdaptergetAllDetails(tempcategory,getActivity());
+            listView.setAdapter(adaptergetAllDetails);
+
+        }
+
 
     }
 
