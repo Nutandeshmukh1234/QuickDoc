@@ -1,12 +1,15 @@
 package com.example.quickdoc;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.cardview.widget.CardView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -46,6 +49,7 @@ public class AdaptergetAllDetails extends BaseAdapter {
             view = inflater.inflate(R.layout.lt_category_shoe_activity,null);
             viewHolder.ivCategaryimage = view.findViewById(R.id.ivCategaryimage);
             viewHolder.tvCategaryName = view.findViewById(R.id.tvCategaryName);
+            viewHolder.cardView = view.findViewById(R.id.cdCategoryShow);
             view.setTag(viewHolder);
         }
         else {
@@ -54,16 +58,27 @@ public class AdaptergetAllDetails extends BaseAdapter {
         final POJOgetAllDetails obj = pojOgetAllDetails1.get(position);
         viewHolder.tvCategaryName.setText(obj.getCategoryname());
         Glide.with(activity)
-                .load("http://192.168.199.113:80/QuickDoc/images/"+obj.getCategoryimage())
+                .load("http://192.168.220.113:80/QuickDoc/images/"+obj.getCategoryimage())
                 .skipMemoryCache(true)
                 .diskCacheStrategy(DiskCacheStrategy.NONE)
                 .placeholder(R.drawable.icon_home)
                 .into(viewHolder.ivCategaryimage);
+        viewHolder.cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(activity,CategoryWiseDoctorListActivity.class);
+                i.putExtra("categoryname",obj.getCategoryname());
+                activity.startActivity(i);
+
+            }
+        });
+
         return view;
     }
     class ViewHolder
     {
         ImageView ivCategaryimage;
+        CardView cardView;
         TextView tvCategaryName;
     }
 

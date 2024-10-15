@@ -83,14 +83,13 @@ public class HomeFragment extends Fragment {
 
         }
 
-
     }
 
     private void getAllCategariesDetails() {
         AsyncHttpClient client = new AsyncHttpClient();
         RequestParams params = new RequestParams();
 
-                client.post("http://192.168.199.113:80/QuickDoc/quickdocgetAllCategoryDetails.php",params,new JsonHttpResponseHandler(){
+                client.post("http://192.168.220.113:80/QuickDoc/quickdocgetAllCategoryDetails.php",params,new JsonHttpResponseHandler(){
                     @Override
                     public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                         super.onSuccess(statusCode, headers, response);

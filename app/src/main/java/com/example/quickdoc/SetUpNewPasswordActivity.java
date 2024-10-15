@@ -73,7 +73,7 @@ public class SetUpNewPasswordActivity extends AppCompatActivity {
         requestParams.put("modileno",strmobileno);
         requestParams.put("password",editTextNewPassword);
 
-        asyncHttpClient.post("http://192.168.199.113:80/QuickDoc/quickdocchangePassword.php",requestParams,new JsonHttpResponseHandler(){
+        asyncHttpClient.post("http://192.168.29.70:80/QuickDoc/quickdocchangePassword.php",requestParams,new JsonHttpResponseHandler(){
 
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".CategoryWiseDoctorListActivity">
+
+    <androidx.appcompat.widget.SearchView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/svHomeFragmentSearchCategaoryDoctorList"
+        app:queryHint="Search By Category, Doctor Name, Hospital Name"
+        app:iconifiedByDefault="false"
+        android:padding="9dp"
+        android:layout_margin="17dp"
+        android:background="@drawable/login_design"/>
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="16sp"
+        android:id="@+id/lvListHomeFragment"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvNotFoundCategorWiseDoctorListFragment"
+        android:text="Not Found List"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:textSize="20dp"
+        android:visibility="gone"/>
+
+
+</LinearLayout>
