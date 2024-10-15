@@ -80,7 +80,7 @@ public class MyProfileFragment extends Fragment {
 
         params.put("username",strUsername);
 
-        asyncHttpClient.post("http://192.168.29.70:80/QuickDoc/quickdocMyDetails.php/",params,new JsonHttpResponseHandler(){
+        asyncHttpClient.post("http://192.168.43.110:80/QuickDoc/quickdocMyDetails.php/",params,new JsonHttpResponseHandler(){
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 super.onSuccess(statusCode, headers, response);

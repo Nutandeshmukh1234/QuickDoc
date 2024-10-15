@@ -30,9 +30,9 @@ public class CategoryWiseDoctorListActivity extends AppCompatActivity {
     SearchView searchViewCategoryWiseDoctorList;
     ListView listView;
     TextView textView;
+    String strcategoryname;
     List<POJOCategoryWiseDoctorList> pojoCategoryWiseDoctorLists;
     AdapterCategoryWiseDoctorList adapterCategoryWiseDoctorList;
-    String strcategoryname;
 
 
     @Override
@@ -50,6 +50,39 @@ public class CategoryWiseDoctorListActivity extends AppCompatActivity {
         pojoCategoryWiseDoctorLists = new ArrayList<>();
 
         getCategoryWiseDoctorList();
+
+        searchViewCategoryWiseDoctorList.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                searchdoctorbyCategory(s);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                searchdoctorbyCategory(s);
+                return false;
+            }
+        });
+
+    }
+
+    private void searchdoctorbyCategory(String s) {
+        List<POJOCategoryWiseDoctorList> templist = new ArrayList<>();
+        templist.clear();
+
+        for (POJOCategoryWiseDoctorList obj:pojoCategoryWiseDoctorLists) {
+            if (obj.getDoctorname().toUpperCase().contains(s.toUpperCase()) ||
+                    obj.getHospitalname().toUpperCase().contains(s.toUpperCase()) ||
+                    obj.getDoctorfield().toUpperCase().contains(s.toUpperCase()) ||
+                    obj.getDoctorimage().toUpperCase().contains(s.toUpperCase())) {
+
+                templist.add(obj);
+
+            }
+            adapterCategoryWiseDoctorList = new AdapterCategoryWiseDoctorList(templist, this);
+            listView.setAdapter(adapterCategoryWiseDoctorList);
+        }
 
     }
 
@@ -86,7 +119,7 @@ public class CategoryWiseDoctorListActivity extends AppCompatActivity {
                         String doctorrating = jsonObject.getString("doctorrating");
                         String doctortime = jsonObject.getString("doctortime");
                         String doctordescription = jsonObject.getString("doctordescription");
-                        
+
                         pojoCategoryWiseDoctorLists.add(new POJOCategoryWiseDoctorList(id, doctorimage, doctorname,hospitalname ,doctorfield, doctorexperience,
                                 doctorprice,doctorrating,doctortime,doctordescription));
                     }

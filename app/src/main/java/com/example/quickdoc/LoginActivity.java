@@ -178,7 +178,7 @@ public class LoginActivity extends AppCompatActivity {
         params.put("username",etusername.getText().toString());
         params.put("password",etPassword.getText().toString());
 
-        client.post("http://192.168.29.70:80/QuickDoc/quickdocuserLogin.php",params,new JsonHttpResponseHandler(){
+        client.post("http://192.168.43.110:80/QuickDoc/quickdocuserLogin.php",params,new JsonHttpResponseHandler(){
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 super.onSuccess(statusCode, headers, response); try {

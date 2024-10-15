@@ -42,8 +42,8 @@ public class HomeFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
         listView = view.findViewById(R.id.lvListHomeFragment);
-        textView=view.findViewById(R.id.tvNotFoundHoneFragment);
-        searchView= view.findViewById(R.id.svHomeFragmentSearchCategaory);
+        textView=view.findViewById(R.id.tvNotFoundCategorWiseDoctorListFragment);
+        searchView= view.findViewById(R.id.svHomeFragmentSearchCategaoryDoctorList);
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override

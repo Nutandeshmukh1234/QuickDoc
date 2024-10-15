@@ -1,37 +1,131 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    tools:context=".HomeFragment">
+    android:orientation="vertical">
 
-    <androidx.appcompat.widget.SearchView
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/svHomeFragmentSearchCategaory"
-        app:queryHint="Search By Category"
-        app:iconifiedByDefault="false"
-        android:padding="9dp"
-        android:layout_margin="17dp"
-        android:background="@drawable/login_design"/>
+        android:layout_margin="16dp"
+        android:id="@+id/cdCategoryShow"
+        app:cardElevation="20dp"
+        app:cardCornerRadius="18dp"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-    <ListView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/lvListHomeFragment"/>
+            <ImageView
+                android:layout_width="200dp"
+                android:layout_height="260dp"
+                android:id="@+id/ivDoctorimage"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="12dp"/>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/tvNotFoundHoneFragment"
-        android:text="Not Found"
-        android:textColor="@color/black"
-        android:textStyle="bold"
-        android:textSize="20dp"
-        android:visibility="gone"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvDoctorName"
+                android:text=""
+                android:textColor="@color/black"
+                android:layout_margin="10dp"
+                android:textSize="19dp"
+                android:textStyle="bold"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvHospitalName"
+                android:text=""
+                android:textColor="@color/black"
+                android:layout_margin="7dp"
+                android:textSize="19dp"
+                android:textStyle="bold"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvDoctorField"
+                android:text=""
+                android:textColor="@color/black"
+                android:layout_margin="7dp"
+                android:textSize="19dp"
+                android:textStyle="bold"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvDoctorExperience"
+                android:text=""
+                android:textColor="@color/black"
+                android:layout_margin="7dp"
+                android:textSize="19dp"
+                android:textStyle="bold"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:weightSum="2">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:id="@+id/tvDoctorPrice"
+                    android:text=""
+                    android:textColor="@color/black"
+                    android:layout_margin="7dp"
+                    android:textSize="19dp"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tvDoctorRating"
+                    android:text=""
+                    android:textColor="@color/black"
+                    android:layout_margin="7dp"
+                    android:textSize="19dp"
+                    android:textStyle="bold"/>
+            </LinearLayout>
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvDoctorTime"
+                android:text=""
+                android:textColor="@color/black"
+                android:layout_margin="7dp"
+                android:textSize="19dp"
+                android:textStyle="bold"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvDoctorDescription"
+                android:text=""
+                android:textColor="@color/black"
+                android:layout_margin="7dp"
+                android:textSize="19dp"
+                android:textStyle="bold"/>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/btnBookClinicVisit"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/loginbutton"
+                android:text=" Book clinic Visit"
+                android:textColor="@color/black"
+                android:textSize="17sp"
+                android:textStyle="bold"
+                android:layout_margin="14dp"
+                android:padding="10sp"
+                android:shadowRadius="25"/>
+
+
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
 
 
 </LinearLayout>
