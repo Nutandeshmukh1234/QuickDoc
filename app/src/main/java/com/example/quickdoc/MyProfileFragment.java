@@ -32,7 +32,7 @@ import cz.msebera.android.httpclient.Header;
 public class MyProfileFragment extends Fragment {
 
     ImageView imageView;
-    AppCompatButton button1,button2;
+    AppCompatButton button1,button2,button3;
     TextView textView1,textView2, textView3,textView4;
     ProgressDialog progressDialog;
     SharedPreferences sharedPreferences;
@@ -53,14 +53,17 @@ public class MyProfileFragment extends Fragment {
         imageView = view.findViewById(R.id.ivQuickDocLogo);
         button1= view.findViewById(R.id.btnChangeProfile);
         button2= view.findViewById(R.id.btnSignOut);
+        button3= view.findViewById(R.id.btnUpdateProfile);
         textView1=view.findViewById(R.id.tvNameUser);
         textView2=view.findViewById(R.id.tvMobilenoUser);
         textView3=view.findViewById(R.id.tvEmailidUser);
         textView4=view.findViewById(R.id.tvUsernameUser);
 
 
+
        return view;
     }
+
 
     @Override
     public void onStart() {
@@ -73,6 +76,7 @@ public class MyProfileFragment extends Fragment {
 
         getMyDetails();
     }
+
 
     private void getMyDetails() {
         AsyncHttpClient asyncHttpClient = new AsyncHttpClient();
@@ -95,22 +99,35 @@ public class MyProfileFragment extends Fragment {
                         String id = jsonObject.getString("id");
                         String image = jsonObject.getString("image");
                         String name = jsonObject.getString("name");
-                        String modileno = jsonObject.getString("modileno");
+                        String mobileno = jsonObject.getString("mobileno");
                         String emailid = jsonObject.getString("emailid");
                         String username = jsonObject.getString("username");
 
                         textView1.setText(name);
-                        textView2.setText(modileno);
+                        textView2.setText(mobileno);
                         textView3.setText(emailid);
                         textView4.setText(username);
 
                         Glide.with(getActivity())
-                                .load("http://192.168.199.113:80/QuickDoc/images/"+image)
+                                .load("http://192.168.43.147:80/QuickDoc/images/"+image)
                                 .skipMemoryCache(true)
                                 .diskCacheStrategy(DiskCacheStrategy.NONE)
                                 .error(R.drawable.imagenotfound)
                                 .placeholder(R.drawable.icon_home)
                                 .into(imageView);
+
+                        button3.setOnClickListener(new View.OnClickListener() {
+                            @Override
+
+                            public void onClick(View v) {
+                                Intent  i = new Intent(getActivity(), UpdateProfileActivity.class);
+                                i.putExtra("name",name);
+                                i.putExtra("mobileno",mobileno);
+                                i.putExtra("emailid",emailid);
+                                i.putExtra("username",username);
+                                startActivity(i);
+                            }
+                        });
 
                     }
 
@@ -118,6 +135,7 @@ public class MyProfileFragment extends Fragment {
                     throw new RuntimeException(e);
                 }
             }
+
 
             @Override
             public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {

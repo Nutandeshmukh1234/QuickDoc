@@ -1,10 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MyProfileFragment"
-    android:orientation="vertical">
+    android:layout_margin="20dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:id="@+id/main">
 
     <ImageView
         android:layout_width="200dp"
@@ -13,6 +19,7 @@
         android:src="@drawable/doctor2"
         android:layout_gravity="center_horizontal"
         />
+
     <androidx.appcompat.widget.AppCompatButton
         android:layout_width="340dp"
         android:layout_height="50dp"
@@ -77,6 +84,18 @@
     <androidx.appcompat.widget.AppCompatButton
         android:layout_width="340dp"
         android:layout_height="50dp"
+        android:id="@+id/btnUpdateProfile"
+        android:text="Update Profile"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:textSize="20dp"
+        android:layout_marginTop="25dp"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/loginbutton" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_width="340dp"
+        android:layout_height="50dp"
         android:id="@+id/btnSignOut"
         android:text="Sign Out"
         android:textColor="@color/black"
@@ -87,11 +106,5 @@
         android:background="@drawable/loginbutton"/>
 
 
-
-
-
-
-
-
-
-</LinearLayout>
+    </LinearLayout>
+</ScrollView>

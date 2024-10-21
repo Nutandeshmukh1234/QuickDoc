@@ -28,6 +28,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.quickdoc.Admin.AdminHomeActivity;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -175,39 +176,49 @@ public class LoginActivity extends AppCompatActivity {
         AsyncHttpClient client = new AsyncHttpClient();
         RequestParams params = new RequestParams();
 
-        params.put("username",etusername.getText().toString());
-        params.put("password",etPassword.getText().toString());
+        params.put("username", etusername.getText().toString());
+        params.put("password", etPassword.getText().toString());
 
-        client.post("http://192.168.43.110:80/QuickDoc/quickdocuserLogin.php",params,new JsonHttpResponseHandler(){
+        client.post("http://192.168.43.110:80/QuickDoc/quickdocuserLogin.php", params, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
-                super.onSuccess(statusCode, headers, response); try {
-                    String string = response.getString("success");
-                    if (string.equals("1"))
-                    {
+                super.onSuccess(statusCode, headers, response);
+                try {
+                    String status = response.getString("success");
+                    String userrole = response.getString("userrloe");
+                    if (status.equals("1") && userrole.equals("useer")) {
                         progressDialog.dismiss();
-                        Toast.makeText(LoginActivity.this,"Login Successful",Toast.LENGTH_SHORT).show();
-                        Intent i = new Intent(LoginActivity.this,HomeActivity.class);
-                        editor.putString("username",etusername.getText().toString());
+                        Toast.makeText(LoginActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
+                        Intent i = new Intent(LoginActivity.this, HomeActivity.class);
+                        editor.putBoolean("isLogin", true).commit();
+                        editor.putString("username", etusername.getText().toString());
                         startActivity(i);
                         finish();
 
-                    }else {
-                        Toast.makeText(LoginActivity.this,"Already data Exists",Toast.LENGTH_SHORT).show();
+                    } else if (status.equals("1") && userrole.equals("admin")) {
+                        progressDialog.dismiss();
+                        Toast.makeText(LoginActivity.this, "Login Successfully Done", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(LoginActivity.this, AdminHomeActivity.class);
+                        startActivity(intent);
+                    } else {
+                        Toast.makeText(LoginActivity.this, "Already data Exists", Toast.LENGTH_SHORT).show();
                         progressDialog.dismiss();
                     }
+
                 } catch (JSONException e) {
                     throw new RuntimeException(e);
                 }
+
             }
+
             @Override
             public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
                 super.onFailure(statusCode, headers, throwable, errorResponse);
                 progressDialog.dismiss();
-                Toast.makeText(LoginActivity.this,"Could not Connect",Toast.LENGTH_SHORT).show();
+                Toast.makeText(LoginActivity.this, "Could not Connect", Toast.LENGTH_SHORT).show();
             }
         });
-    }
-}
+
+
 
 

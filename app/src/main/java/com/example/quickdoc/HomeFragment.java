@@ -1,5 +1,6 @@
 package com.example.quickdoc;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 
 import androidx.appcompat.widget.SearchView;
@@ -35,6 +36,7 @@ public class HomeFragment extends Fragment {
     AdaptergetAllDetails adaptergetAllDetails;
     SearchView searchView;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
